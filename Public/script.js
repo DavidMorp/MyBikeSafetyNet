@@ -142,7 +142,10 @@ function GetMap() {
     //Add your Azure Maps subscription key to the map SDK. Get an Azure Maps key at https://azure.com/maps
     atlas.setSubscriptionKey('Fp4Ibij15dsJdAIQYD_vUKwOXrYtK-PvGo3yDHZ2rnQ');
     //Initialize a map instance.
-    map = new atlas.Map('myMap');
+    map = new atlas.Map('myMap',{
+        center:[-1.2577 , 51.7520],
+        zoom: 14
+    });
     //Wait until the map resources have fully loaded.
     map.events.add('load', function (e) {
         //Create a style control and add it to the map.
