@@ -12,6 +12,7 @@
 
     <!-- Add references to the Azure Maps Map control JavaScript and CSS files. -->
     <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/css/atlas.min.css?api-version=1" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script src="https://atlas.microsoft.com/sdk/js/atlas.min.js?api-version=1"></script>
 
     <script src="../Common/scripts/clipboard.min.js"></script>
@@ -21,7 +22,7 @@
     <div class="dropdown">
         <div id="title"><h1>My Bike SafetyNet</h1></div>
         <div id = "menu"><p>☰</p></div>
-        <div id="plotDropdown" class="dropdown-content">
+        <div id="plotDropdown" class="dropdown-content" onclick="showPlot()">
             <div class = "leftDiv">
                 <button class = "plotButton" onclick="plotValues()">Plot Values</button>
             </div>

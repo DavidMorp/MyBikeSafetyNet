@@ -98,13 +98,13 @@ table td:nth-of-type(2) {
 #menu{
     width:50%;
     font-size:30px;
-    margin-top:-2%;
+    margin-top:-1.8%;
     margin-left: 18%;
 }
 
 #title{
     width:50%;
-    margin-top:-0.5%;
+    margin-top:-1%;
     margin-left: 41%;
 }
 
@@ -116,5 +116,10 @@ table td:nth-of-type(2) {
     background-color: rgb(167, 197, 226);
     border: 1px solid black;
     height: 7vh;
-    font-family:monospace;
+    font-family:'Roboto', sans-serif;
 }
+
+ .show {
+     display: flex;
+     transition: all .2s ease;
+ }
