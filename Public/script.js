@@ -158,7 +158,7 @@ function GetMap() {
         var datasource = new atlas.source.DataSource();
         map.sources.add(datasource);
         //Load a data set of points, in this case earthquake data from the USGS.
-        fetch("../data/bike_theft_data_1.geojson", {mode: "no-cors"})
+        fetch("../data/bike_theft_data_1.txt", {mode: "no-cors"})
             .then(function (response) {
                 return response.json();
             }).then(function (response) {
@@ -188,7 +188,7 @@ function getInputOptions() {
         radius: getPropertyValue('radius', parseFloat(document.getElementById('Radius').value)),
         opacity: getPropertyValue('opacity', parseFloat(document.getElementById('Opacity').value)),
         intensity: getPropertyValue('intensity', parseFloat(document.getElementById('Intensity').value)),
-        weight: document.getElementById('Weight').checked ? magWeight: 1,
+        weight: document.getElementById('Weight').checked ? magWeight: 0.6,
         minZoom: getPropertyValue('minZoom', parseFloat(document.getElementById('MinZoom').value)),
         maxZoom: getPropertyValue('maxZoom', parseFloat(document.getElementById('MaxZoom').value)),
         visible: getPropertyValue('visible', document.getElementById('Visible').checked)
