@@ -4,6 +4,7 @@
         min-width: 350px;
         height: 100vh;
         float: left;
+        user-select: none;
     }
 .sidePanel {
     width: 325px;
@@ -94,15 +95,26 @@ table td:nth-of-type(2) {
     display: block;
 }
 
-#headers{
-    width:100%;
+#menu{
+    width:50%;
+    font-size:30px;
+    margin-top:-2%;
+    margin-left: 18%;
 }
 
-.menu{
+#title{
     width:50%;
-    float:right;
+    margin-top:-0.5%;
+    margin-left: 41%;
 }
 
-.title{
-    width:50%;
+.dropdown {
+    position: relative;
+    display: flex;
+    width: 100%;
+    text-align: center;
+    background-color: rgb(167, 197, 226);
+    border: 1px solid black;
+    height: 7vh;
+    font-family:monospace;
 }

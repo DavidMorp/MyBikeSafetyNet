@@ -240,3 +240,7 @@ function gradientSelected(elm, idx) {
 function toggleGradientDropdown() {
     document.getElementById("gradientDropdown").classList.toggle("show");
 }
+
+function showPlot() {
+    document.getElementById("plotDropdown").classList.toggle("show");
+}

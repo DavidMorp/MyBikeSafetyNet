@@ -18,14 +18,15 @@
     <script src="../Public/Dashboard.js"></script>
     <link rel="stylesheet" href="../Public/style.css"/>
 
-    <div class="headers">
-        <h1 id="title">App Name</h1>
-        <p id = "menu">☰</p>
-    </div>
     <div class="dropdown">
-        <button onclick="showFilters()" id ="filtersbutton" class="dropbtn">Filters</button>
-        <button onclick="showPlot()" id="filterRefresh">Plot Values</button>
-        <button onclick="showAddRow()" id="addRemove">Add New Row</button>
+        <div id="title"><h1>My Bike SafetyNet</h1></div>
+        <div id = "menu"><p>☰</p></div>
+        <div id="plotDropdown" class="dropdown-content">
+            <div class = "leftDiv">
+                <button class = "plotButton" onclick="plotValues()">Plot Values</button>
+            </div>
+        </div>
+    </div>
      </div>
 
 </head>
