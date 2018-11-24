@@ -155,7 +155,7 @@ function GetMap() {
         var datasource = new atlas.source.DataSource();
         map.sources.add(datasource);
         //Load a data set of points, in this case earthquake data from the USGS.
-        fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson')
+        fetch("https://github.com/DavidMorp/MyBikeSafetyNet/blob/geojson-add/Public/bike_theft_data_1.geojson", {mode: "no-cors"})
             .then(function (response) {
                 return response.json();
             }).then(function (response) {
@@ -241,6 +241,12 @@ function toggleGradientDropdown() {
     document.getElementById("gradientDropdown").classList.toggle("show");
 }
 
-function showPlot() {
-    document.getElementById("plotDropdown").classList.toggle("show");
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("mySidenav").style.border = "1px solid black";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("mySidenav").style.border = "none";
 }

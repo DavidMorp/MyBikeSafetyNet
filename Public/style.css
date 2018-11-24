@@ -99,13 +99,13 @@ table td:nth-of-type(2) {
     width:50%;
     font-size:30px;
     margin-top:-1.8%;
-    margin-left: 18%;
+    margin-left: -22%;
+    cursor: pointer;
 }
 
 #title{
     width:50%;
     margin-top:-1%;
-    margin-left: 41%;
 }
 
 .dropdown {
@@ -119,7 +119,46 @@ table td:nth-of-type(2) {
     font-family:'Roboto', sans-serif;
 }
 
- .show {
-     display: flex;
-     transition: all .2s ease;
+
+ .sidenav {
+     font-family:'Roboto', sans-serif;
+     height: 20%;
+     width: 0;
+     position: fixed;
+     z-index: 1;
+     top: 8px;
+     left: 8px;
+     background-color: rgb(167, 197, 226);
+     overflow-x: hidden;
+     transition: 0.5s;
+     padding-top: 60px;
+ }
+
+ .sidenav a {
+     padding: 8px 8px 8px 32px;
+     text-decoration: none;
+     font-size: 25px;
+     color: black;
+     display: block;
+     transition: 0.3s;
+ }
+
+ .sidenav a:hover {
+     color: #f1f1f1;
+ }
+
+ .sidenav .closebtn {
+     cursor: pointer;
+     position: absolute;
+     top: 0;
+     font-size: 36px;
+     margin-left: 50px;
+ }
+
+ .closebtn{
+     margin-left: 0px !important;
+ }
+
+ .sidenav{
+     right:25px;
  }
