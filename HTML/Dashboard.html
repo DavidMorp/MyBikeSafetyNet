@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Azure Maps Web Control Samples - Heat Map Layer Options</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="This sample shows how the different options of the heat map affect rendering." />
+    <meta name="keywords" content="map, gis, API, SDK, heatmap, heat map, density, thermatic, layer" />
+    <meta name="author" content="Microsoft Azure Maps" />
+
+    <!-- Add references to the Azure Maps Map control JavaScript and CSS files. -->
+    <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/css/atlas.min.css?api-version=1" type="text/css" />
+    <script src="https://atlas.microsoft.com/sdk/js/atlas.min.js?api-version=1"></script>
+
+    <script src="../Common/scripts/clipboard.min.js"></script>
+    <script src="../Public/Dashboard.js"></script>
+    <link rel="stylesheet" href="../Public/style.css"/>
+
+    <div class="headers">
+        <h1 id="title">App Name</h1>
+        <p id = "menu">☰</p>
+    </div>
+    <div class="dropdown">
+        <button onclick="showFilters()" id ="filtersbutton" class="dropbtn">Filters</button>
+        <button onclick="showPlot()" id="filterRefresh">Plot Values</button>
+        <button onclick="showAddRow()" id="addRemove">Add New Row</button>
+     </div>
+
+</head>
+<body onload="GetMap()">
+<fieldset class="sidePanel" style="display:none">
+    <legend>Heat Map Layer Options</legend>
+    This sample shows how the different options of the heat map layer affect rendering.
+    <br /><br />
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(this, 'StyleOptions')">Base Options</button>
+        <button class="tablinks" onclick="openTab(this, 'LayerOptions')">Layer Options</button>
+        <button class="tablinks" onclick="openTab(this, 'Code')">Code</button>
+    </div>
+
+    <div id="StyleOptions" class="tabcontent" style="display:block;">
+        <table>
+            <tr title="An integer specifying the minimum zoom level to render the layer at.">
+                <td>Min Zoom:</td>
+                <td>
+                    <form oninput="minz.value=MinZoom.value">
+                        <input type="range" id="MinZoom" value="0" min="0" max="24" step="1" oninput="updateHeatMapLayer()" onchange="updateHeatMapLayer()" />
+                        <output name="minz" for="MinZoom">0</output>
+                    </form>
+                </td>
+            </tr>
+            <tr title="An integer specifying the maximum zoom level to render the layer at.">
+                <td>Max Zoom:</td>
+                <td>
+                    <form oninput="maxz.value=MaxZoom.value">
+                        <input type="range" id="MaxZoom" value="24" min="0" max="24" step="1" oninput="updateHeatMapLayer()" onchange="updateHeatMapLayer()" />
+                        <output name="maxz" for="MaxZoom">24</output>
+                    </form>
+                </td>
+            </tr>
+            <tr title="Specifies if the layer is visible or not.">
+                <td>Visible:</td>
+                <td><input id="Visible" type="checkbox" onclick="updateHeatMapLayer()" checked="checked" /></td>
+            </tr>
+        </table>
+
+        <p>
+            In addition to the options in this tool, the HeatMapLayer also has options for;
+        <ul>
+            <li>sourceLayer - used with VectorTileSource.</li>
+        </ul>
+        Many options in this layer also support StyleFunctions and Expressions which are not demonstrated in this sample.
+        </p>
+    </div>
+
+    <div id="LayerOptions" class="tabcontent">
+        <table>
+            <tr title="The color gradient expression to colorize the heat map.">
+                <td>Heat Gradient:</td>
+                <td>
+                    <div class="dropdown">
+                        <button id="gradientDropdownBtn" onclick="toggleGradientDropdown()" class="dropbtn"></button>
+                        <div id="gradientDropdown" class="dropdown-content">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr title="The radius in pixels used to render a data point on the heatmap. The radius must be a number greater or equal to 1.">
+                <td>Radius</td>
+                <td>
+                    <form oninput="radius.value=Radius.value">
+                        <input type="range" id="Radius" value="30" min="1" max="100" step="1" oninput="updateHeatMapLayer()" onchange="updateHeatMapLayer()" />
+                        <output name="radius" for="Radius">30</output>
+                    </form>
+                </td>
+            </tr>
+            <tr title="The opacity at which the heatmap layer will be rendered defined as a number between 0 and 1.">
+                <td>Opacity</td>
+                <td>
+                    <form oninput="opacity.value=Opacity.value">
+                        <input type="range" id="Opacity" value="1" min="0" max="1" step="0.1" oninput="updateHeatMapLayer()" onchange="updateHeatMapLayer()" />
+                        <output name="opacity" for="Opacity">1</output>
+                    </form>
+                </td>
+            </tr>
+            <tr title="Similar to heatmap-weight but specifies the global heatmap intensity. The higher this value is, the more ‘weight’ each point will contribute to the appearance.">
+                <td>Intensity</td>
+                <td>
+                    <form oninput="intensity.value=Intensity.value">
+                        <input type="range" id="Intensity" value="1" min="1" max="100" step="1" oninput="updateHeatMapLayer()" onchange="updateHeatMapLayer()" />
+                        <output name="intensity" for="Intensity">1</output>
+                    </form>
+                </td>
+            </tr>
+            <tr title="Specifies how much an individual data point contributes to the heatmap. Must be a number greater than 0. A value of 5 would be equivalent to having 5 points of weight 1 in the same spot. This is useful when clustering points to allow heatmap rendering or large datasets.">
+                <td>Weight</td>
+                <td>
+                    <input id="Weight" type="checkbox" onclick="updateHeatMapLayer()"/> base on "mag" property
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="Code" class="tabcontent">
+        <textarea id="CodeOutput"></textarea><br /><br />
+        <input id="RemoveDefaults" type="checkbox" onclick="updateHeatMapLayer()" checked="checked" /> Remove defaults
+        <button class="copyBtn" data-clipboard-target="#CodeOutput">Copy to clipboard</button>
+    </div>
+</fieldset>
+
+<div id="myMap"></div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+ #myMap {
+        position: relative;
+        width: 100%;
+        min-width: 350px;
+        height: 100vh;
+        float: left;
+    }
+.sidePanel {
+    width: 325px;
+    height: 580px;
+    float: left;
+    margin-right: 10px;
+}
+#CodeOutput {
+    width: 300px;
+    height: 400px;
+    overflow-y: auto;
+}
+.copyBtn {
+    float: right;
+}
+table td:nth-of-type(1) {
+    width: 120px;
+}
+table td:nth-of-type(2) {
+    width: 200px;
+}
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    transition: 0.3s;
+    font-size: 14px;
+}
+.tab button:hover {
+    background-color: #ddd;
+}
+.tab button.active {
+    background-color: #ccc;
+}
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+/* Dropdown Button */
+.dropbtn {
+    background-color: white;
+    color: white;
+    height: 20px;
+    width: 150px;
+    border: none;
+    cursor: pointer;
+}
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: white;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 6px;
+    display: block;
+}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd
+}
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: block;
+}
+
+#headers{
+    width:100%;
+}
+
+.menu{
+    width:50%;
+    float:right;
+}
+
+.title{
+    width:50%;
+}
