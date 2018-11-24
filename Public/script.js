@@ -155,7 +155,7 @@ function GetMap() {
         var datasource = new atlas.source.DataSource();
         map.sources.add(datasource);
         //Load a data set of points, in this case earthquake data from the USGS.
-        fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson')
+        fetch('bike_theft_data_1.geojson')
             .then(function (response) {
                 return response.json();
             }).then(function (response) {
