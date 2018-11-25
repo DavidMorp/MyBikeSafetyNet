@@ -19,7 +19,6 @@ var heatGradients = [
     ]
 ];
 function GetMap() {
-    createGradientOptions();
     //Add your Azure Maps subscription key to the map SDK. Get an Azure Maps key at https://azure.com/maps
     atlas.setSubscriptionKey('Fp4Ibij15dsJdAIQYD_vUKwOXrYtK-PvGo3yDHZ2rnQ');
     //Initialize a map instance.
@@ -52,7 +51,8 @@ function GetMap() {
             map.layers.add(heatMapLayer, 'labels');
             defaultOptions = heatMapLayer.getOptions();
             //Update the heat map layer with the options in the input fields.
-            gradientSelected(document.getElementById('gradientDropdown').childNodes[0], 0);
+            var options = getInputOptions();
+            heatMapLayer.setOptions(options);
         });
 
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -87,28 +87,21 @@ function GetMap() {
             });
         });
 
+
+
         new ClipboardJS('.copyBtn');
     });
 }
 
-function updateHeatMapLayer() {
-    var options = getInputOptions();
-    heatMapLayer.setOptions(options);
-
-    document.getElementById('CodeOutput').value = JSON.stringify(options, null, '\t').replace(/\"([^(\")"]+)\":/g, "$1:");
-}
 function getInputOptions() {
-    removeDefaults = document.getElementById('RemoveDefaults').checked;
-
     return {
         color: heatGradients[0],
         radius: 15,
         opacity: 0.6,
         intensity: 6,
         weight: 0.6,
-        minZoom: getPropertyValue('minZoom', parseFloat(document.getElementById('MinZoom').value)),
-        maxZoom: getPropertyValue('maxZoom', parseFloat(document.getElementById('MaxZoom').value)),
-        visible: getPropertyValue('visible', document.getElementById('Visible').checked)
+        minZoom: 10,
+        maxZoom: 100
     };
 }
 function getPropertyValue(propertyName, value) {
@@ -162,11 +155,9 @@ function toggleGradientDropdown() {
 }
 
 function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("mySidenav").style.border = "1px solid black";
+    document.getElementById("mySidenav").classList.toggle("show");
 }
 
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("mySidenav").style.border = "none";
-}
+// function closeNav() {
+//     document.getElementById("mySidenav").style.width = "0";
+// }
