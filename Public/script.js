@@ -99,11 +99,21 @@ function getInputOptions() {
     };
 }
 
-function toggleGradientDropdown() {
-    document.getElementById("gradientDropdown").classList.toggle("show");
+
+function viewPostcode() {
+    openNav();
+    document.getElementById("postcode").style.width = '300px';
+}
+
+function closePostcode() {
+    document.getElementById("postcode").style.width = '0';
+    openNav();
+}
+
+function viewMap() {
+    document.getElementById("myMap").classList.toggle("show");
 }
 
 function openNav() {
     document.getElementById("mySidenav").classList.toggle("show");
 }
-

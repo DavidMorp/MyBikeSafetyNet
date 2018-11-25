@@ -24,8 +24,17 @@
         <div id="title"><h1>MY BIKE SAFETY NET</h1></div>
     </div>
     <div id="mySidenav" class="sidenav">
-        <a class="closebtn" onclick="closeNav()">☰</a>
-        <a href="#">Bike Info</a>
+        <a onclick="viewPostcode()">By Postcode</a>
+        <a onclick="viewInfo()">Bike Info</a>
+    </div>
+
+    <div id="postcode" class="sidenav">
+        <form class="postSearch">
+            <input type="text" placeholder="Enter Postcode" name="search">
+            <button>&#x1F50D</i></button>
+        </form>
+        <div id="Stats"></div>
+        <a id = "clickable" onclick="closePostcode()">Close</a>
     </div>
      </div>
 
