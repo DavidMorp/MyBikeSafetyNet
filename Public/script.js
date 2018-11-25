@@ -23,10 +23,12 @@ function GetMap() {
     //Add your Azure Maps subscription key to the map SDK. Get an Azure Maps key at https://azure.com/maps
     atlas.setSubscriptionKey('Fp4Ibij15dsJdAIQYD_vUKwOXrYtK-PvGo3yDHZ2rnQ');
     //Initialize a map instance.
-    map = new atlas.Map('myMap',{
-        center:[-1.2577 , 51.7520],
+    map = new atlas.Map('myMap', {
+        center: [-1.2577, 51.7520],
         zoom: 14
     });
+
+
     //Wait until the map resources have fully loaded.
     map.events.add('load', function (e) {
         //Create a style control and add it to the map.
@@ -43,18 +45,52 @@ function GetMap() {
             .then(function (response) {
                 return response.json();
             }).then(function (response) {
-                //Add the earthquake data to the data source.
-                datasource.add(response.features);
-                //Create a heat map layer and add it to the map.
-                heatMapLayer = new atlas.layer.HeatMapLayer(datasource);
-                map.layers.add(heatMapLayer, 'labels');
-                defaultOptions = heatMapLayer.getOptions();
-                //Update the heat map layer with the options in the input fields.
-                gradientSelected(document.getElementById('gradientDropdown').childNodes[0], 0);
+            //Add the earthquake data to the data source.
+            datasource.add(response.features);
+            //Create a heat map layer and add it to the map.
+            heatMapLayer = new atlas.layer.HeatMapLayer(datasource);
+            map.layers.add(heatMapLayer, 'labels');
+            defaultOptions = heatMapLayer.getOptions();
+            //Update the heat map layer with the options in the input fields.
+            gradientSelected(document.getElementById('gradientDropdown').childNodes[0], 0);
+        });
+
+        navigator.geolocation.getCurrentPosition(function (position) {
+            //Create a data source and add it to the map.
+            var datasource = new atlas.source.DataSource();
+            map.sources.add(datasource);
+            //Create a circle from a Point feature by providing it a subType property set to "Circle" and radius property.
+            var userPosition = [position.coords.longitude, position.coords.latitude];
+            var userPoint = new atlas.data.Point(userPosition)
+            //Add a point feature with Circle properties to the data source for the users position. This will be rendered as a polygon.
+            datasource.add(new atlas.data.Feature(userPoint, {
+                subType: "Circle",
+                radius: position.coords.accuracy
+            }));
+
+            datasource.add(userPoint);
+
+            map.layers.add([
+                //Create a polygon layer to render the filled in area of the accuracy circle for the users position.
+                new atlas.layer.PolygonLayer(datasource, null, {
+                    fillColor: 'rgba(0, 153, 255, 0.5)'
+                }),
+                //Create a symbol layer to render the users position on the map.
+                new atlas.layer.SymbolLayer(datasource, null, {
+                    filter: ['==', '$type', 'Point']
+                })
+            ]);
+            //Center the map on the users position.
+            map.setCamera({
+                center: userPosition,
+                zoom: 15
             });
+        });
+
+        new ClipboardJS('.copyBtn');
     });
-    new ClipboardJS('.copyBtn');
 }
+
 function updateHeatMapLayer() {
     var options = getInputOptions();
     heatMapLayer.setOptions(options);
