@@ -8,3 +8,9 @@ Utilizing:
 - Azure Notebooks
 - Azure Machine Learning Studio
 - Azure Data Explorer
+
+Languages:
+- Javascript
+- HTML
+- CSS
+- Geojson
