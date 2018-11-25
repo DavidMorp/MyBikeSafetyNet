@@ -4,6 +4,7 @@ App visualizing bike theft data acquired from data.police.uk/data/ to help in id
 more likely to be stolen.
 
 Utilizing:
+- Azure App Service
 - Azure Maps
 - Azure Notebooks
 - Azure Machine Learning Studio
