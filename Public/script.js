@@ -1,11 +1,5 @@
-var map, heatMapLayer, defaultOptions, removeDefaults, selectedGradientIdx = 0;
-var magWeight = [
-    'interpolate',
-    ['linear'],
-    ['get', 'mag'],
-    0, 0,
-    6, 1
-];
+var map, heatMapLayer, defaultOptions = 0;
+
 var heatGradients = [
     //Purple, pink, light blue
     [
@@ -104,52 +98,7 @@ function getInputOptions() {
         maxZoom: 100
     };
 }
-function getPropertyValue(propertyName, value) {
-    if (removeDefaults && defaultOptions[propertyName] === value) {
-        return undefined;
-    }
-    return value;
-}
-function getSelectValue(id) {
-    var elm = document.getElementById(id);
-    return elm.options[elm.selectedIndex].value;
-}
-function openTab(elm, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    elm.className += " active";
-}
-function createGradientOptions() {
-    var html = [];
-    for (var i = 0; i < heatGradients.length; i++) {
-        var canvas = document.createElement('canvas');
-        canvas.width = 150;
-        canvas.height = 15;
-        var ctx = canvas.getContext('2d');
-        var grd = ctx.createLinearGradient(0, 0, 150, 0);
-        for (var j = 3; j < heatGradients[i].length; j += 2) {
-            grd.addColorStop(heatGradients[i][j], heatGradients[i][j + 1]);
-        }
-        ctx.fillStyle = grd;
-        ctx.fillRect(0, 0, 150, 15);
-        html.push('<a href="javascript:void(0)" onclick="gradientSelected(this, ', i, ');"><img src="', canvas.toDataURL(),'"/></a>');
-    }
-    document.getElementById('gradientDropdown').innerHTML = html.join('');
-}
-function gradientSelected(elm, idx) {
-    selectedGradientIdx = idx;
-    updateHeatMapLayer();
-    document.getElementById('gradientDropdownBtn').style.backgroundImage = 'url(' + elm.childNodes[0].src + ')';
-    toggleGradientDropdown();
-}
+
 function toggleGradientDropdown() {
     document.getElementById("gradientDropdown").classList.toggle("show");
 }
@@ -158,6 +107,3 @@ function openNav() {
     document.getElementById("mySidenav").classList.toggle("show");
 }
 
-// function closeNav() {
-//     document.getElementById("mySidenav").style.width = "0";
-// }
