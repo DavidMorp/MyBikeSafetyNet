@@ -103,10 +103,13 @@ function getInputOptions() {
 function viewPostcode() {
     openNav();
     document.getElementById("postcode").style.width = '300px';
+    document.getElementById("postcode").style.height = '300px';
 }
 
 function closePostcode() {
     document.getElementById("postcode").style.width = '0';
+    document.getElementById("postcode").style.height = '0';
+    document.getElementById("search").value = "";
     openNav();
 }
 
