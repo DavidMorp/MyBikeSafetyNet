@@ -16,3 +16,8 @@ Languages:
 - CSS
 - Geojson
 - Python
+
+Dependencies:
+- numpy
+- pandas
+- scipy
