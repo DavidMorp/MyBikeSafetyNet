@@ -240,16 +240,8 @@ table td:nth-of-type(2) {
      }
  }
 
- .circular-chart.orange .circle {
-     stroke: #ff9f00;
- }
-
  .circular-chart.green .circle {
      stroke: #4CC790;
- }
-
- .circular-chart.blue .circle {
-     stroke: #3c9ee5;
  }
 
  .percentage {

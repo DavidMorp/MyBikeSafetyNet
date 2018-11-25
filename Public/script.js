@@ -122,24 +122,35 @@ function openNav() {
 }
 
 function postcodeio() {
+    var start = String(Math.floor((Math.random() * 100) + 1));
+
+    document.getElementById("percentageTxt").innerHTML = start + "%";
+    document.getElementById("colorCircle").setAttribute("stroke-dasharray", start + ",100");
+
+    if(start <= 30){
+        document.getElementById("colorCircle").style.stroke = "green"
+    }else if(start > 30 && start <=60){
+        document.getElementById("colorCircle").style.stroke = "#ffc700"
+    }else{
+        document.getElementById("colorCircle").style.stroke = "red"
+    }
     var  postcode = document.getElementById("search").value;
     var lat, long;
-    $.ajax({
-        url: 'https://api.postcodes.io/postcodes/' + postcode,
-        dataType: 'jsonp',
-        success: function(json) {
-            console.log(json.status);
-            long = json.result.longitude, lat = json.result.latitude;
-            console.log(lat);
-            console.log(long);
-        },
-
-        fail: function() {
-            alert('ajax fail');
-        }
-    });
-
-
+    // $.ajax({
+    //     url: 'https://api.postcodes.io/postcodes/' + postcode,
+    //     dataType: 'jsonp',
+    //     success: function(json) {
+    //         console.log(json.status);
+    //         long = json.result.longitude, lat = json.result.latitude;
+    //         console.log(lat);
+    //         console.log(long);
+    //         postData(lat,long);
+    //     },
+    //
+    //     fail: function() {
+    //         alert('ajax fail');
+    //     }
+    // });
 
 
 }
