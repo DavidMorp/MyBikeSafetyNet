@@ -122,7 +122,7 @@ function openNav() {
 }
 
 function postcodeio() {
-    var start = String(Math.floor((Math.random() * 100) + 1));
+    var start = String(Math.floor((Math.random() * 80) + 1));
 
     document.getElementById("percentageTxt").innerHTML = start + "%";
     document.getElementById("colorCircle").setAttribute("stroke-dasharray", start + ",100");
